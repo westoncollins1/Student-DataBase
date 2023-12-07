@@ -9,11 +9,19 @@ conn = sqlite3.connect('textbook.db')
 #create cursor
 cur = conn.cursor()
 
-create a table for the students
-with 7 columns for information about the student
-(ideas: name, class, age, favorite thing, sports?)
+# create a table with student info
+cur.execute('''CREATE TABLE IF NOT EXISTS StudentDatabase
+               (Name TEXT, Grade TEXT, 
+               Age INTEGER, Gender TEXT, 
+               Height TEXT, Weight TEXT, 
+               FavoriteThing TEXT)''')
 
-add rows of data into the code (10)
+# insert data into table
+cur.execute('''INSERT INTO StudentDatabase(Name,
+                Grade, Age, Gender, Height, Weight, FavoriteThing)
+                VALUES (?, ?, ?, ?, ?, ?)''')
+
+# add rows of data into the code (10)
 
 # save and close connection
 conn.commit()
