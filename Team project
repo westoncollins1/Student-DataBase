@@ -1,1 +1,20 @@
 # weston, jacob, lincoln
+
+# import mod
+import sqlite3
+
+# establish connection
+conn = sqlite3.connect('textbook.db')
+
+#create cursor
+cur = conn.cursor()
+
+create a table for the students
+with 7 columns for information about the student
+(ideas: name, class, age, favorite thing, sports?)
+
+add rows of data into the code (10)
+
+# save and close connection
+conn.commit()
+conn.close()
