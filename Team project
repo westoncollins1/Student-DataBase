@@ -1,15 +1,15 @@
-# weston, jacob, lincoln
+# Weston, Jacob, Lincoln 12/8/23
 
 # import mod
 import sqlite3
 
 # establish connection
-conn = sqlite3.connect("textbook.db")
+conn = sqlite3.connect("student.db")
 
-#create cursor
+# create cursor
 cur = conn.cursor()
 
-# create a table with student info
+# create a table with columns
 cur.execute('''create table students
         (Name TEXT, Grade TEXT, 
         Age INTEGER, Gender TEXT,
@@ -18,7 +18,7 @@ cur.execute('''create table students
 
 # add rows of data into the code (10)
 data_list = [
-    ("Amelia", "12th", 17, "Female", "5ft2", "95", "cats"),
+    ("Amelia", "12th", 17, "Female", "5ft2", "95lbs", "cats"),
     ("Peter", "10th", 15, "Male", "6ft4", "130lbs", "basketball"),
     ("John", "11th", 16, "Male", "5ft9", "120lbs", "cars"),
     ("Emily", "7th", 12, "Female", "5ft2", "85lbs", "books"),
@@ -32,8 +32,7 @@ data_list = [
 # insert data into table
 cur.executemany("insert into students values (?,?,?,?,?,?,?)", data_list)
 
-#print database rows
-
+# print database rows
 for row in cur.execute("select * from students"):
     print(row)
     
