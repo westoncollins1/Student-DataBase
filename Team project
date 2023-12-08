@@ -19,7 +19,7 @@ cur.execute('''CREATE TABLE IF NOT EXISTS StudentDatabase
 # insert data into table
 cur.execute('''INSERT INTO StudentDatabase(Name,
                 Grade, Age, Gender, Height, Weight, FavoriteThing)
-                VALUES (?, ?, ?, ?, ?, ?)''')
+                VALUES (?, ?, ?, ?, ?, ?, ?)''')
 
 # add rows of data into the code (10)
 
