@@ -11,23 +11,23 @@ cur = conn.cursor()
 
 # create a table with columns
 cur.execute('''create table students
-        (Name TEXT, Grade TEXT, 
+        (Name TEXT PRIMARY KEY, Grade TEXT, 
         Age INTEGER, Gender TEXT,
         Height TEXT, Weight TEXT, 
         FavoriteThing TEXT)''')
 
 # add rows of data into the code (10)
 data_list = [
-    ("Amelia", "12th", 17, "Female", "5ft2", "95lbs", "cats"),
-    ("Peter", "10th", 15, "Male", "6ft4", "130lbs", "basketball"),
-    ("John", "11th", 16, "Male", "5ft9", "120lbs", "cars"),
-    ("Emily", "7th", 12, "Female", "5ft2", "85lbs", "books"),
-    ("Julia", "12th", 18, "Female", "5ft6", "93lbs", "horses"),
-    ("William", "8th", 13, "Male", "5ft7", "105lbs", "video games"),
-    ("Bart", "5th", 9, "Male", "5ft3", "85lbs", "skate boards"),
-    ("Kristi", "10th", 16, "Female", "5th4", "89lbs", "drawing"),
-    ("Ted", "9th", 14, "Male", "6ft5", "104lbs", "Youtube"),
-    ("Ava", "11th", 15, "Female", "5ft4", "86lbs", "coding")
+    ("Amelia Johnson", "12th", 17, "Female", "5ft2", "95lbs", "cats"),
+    ("Peter Billings", "10th", 15, "Male", "6ft4", "130lbs", "basketball"),
+    ("John Calvin", "11th", 16, "Male", "5ft9", "120lbs", "cars"),
+    ("Emily Root", "7th", 12, "Female", "5ft2", "85lbs", "books"),
+    ("Julia King", "12th", 18, "Female", "5ft6", "93lbs", "horses"),
+    ("William Brown", "8th", 13, "Male", "5ft7", "105lbs", "video games"),
+    ("Bart Miller", "5th", 9, "Male", "5ft3", "85lbs", "skate boards"),
+    ("Kristi Wilson", "10th", 16, "Female", "5th4", "89lbs", "drawing"),
+    ("Ted Lasso", "9th", 14, "Male", "6ft5", "104lbs", "Youtube"),
+    ("Ava Williams", "11th", 15, "Female", "5ft4", "86lbs", "coding")
 ]
 # insert data into table
 cur.executemany("insert into students values (?,?,?,?,?,?,?)", data_list)
