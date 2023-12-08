@@ -4,17 +4,17 @@
 import sqlite3
 
 # establish connection
-conn = sqlite3.connect('textbook.db')
+conn = sqlite3.connect("textbook.db")
 
 #create cursor
 cur = conn.cursor()
 
 # create a table with student info
-cur.execute('''CREATE TABLE IF NOT EXISTS StudentDatabase
-               (Name TEXT, Grade TEXT, 
-               Age INTEGER, Gender TEXT, 
-               Height TEXT, Weight TEXT, 
-               FavoriteThing TEXT)''')
+cur.execute('''create table students
+        (Name TEXT, Grade TEXT, 
+        Age INTEGER, Gender TEXT,
+        Height TEXT, Weight TEXT, 
+        FavoriteThing TEXT)''')
 
 # add rows of data into the code (10)
 data_list = [
@@ -26,18 +26,17 @@ data_list = [
     ("William", "8th", 13, "Male", "5ft7", "105lbs", "video games"),
     ("Bart", "5th", 9, "Male", "5ft3", "85lbs", "skate boards"),
     ("Kristi", "10th", 16, "Female", "5th4", "89lbs", "drawing"),
-    ("Ted", "9th", 14, "Male", "6ft5", "104lbs", "youtube"),
+    ("Ted", "9th", 14, "Male", "6ft5", "104lbs", "Youtube"),
     ("Ava", "11th", 15, "Female", "5ft4", "86lbs", "coding")
 ]
 # insert data into table
-cur.execute('''INSERT INTO StudentDatabase(Name,
-                Grade, Age, Gender, Height, Weight, FavoriteThing)
-                VALUES (?, ?, ?, ?, ?, ?, ?)''')
+cur.executemany("insert into students values (?,?,?,?,?,?,?)", data_list)
 
-# go through the data and print each
-for row in cur.execute():
+#print database rows
+
+for row in cur.execute("select * from students"):
     print(row)
-
+    
 # save and close connection
 conn.commit()
 conn.close()
