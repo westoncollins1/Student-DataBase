@@ -39,3 +39,29 @@ for row in cur.execute("select * from students"):
 # save and close connection
 conn.commit()
 conn.close()
+
+
+
+
+
+# mainline 
+# Jacob, Lincoln, Weston 12/13/23
+
+# import module
+import sqlite3
+
+# establish connection
+conn = sqlite3.connect('student.db')
+
+# get cursor
+cur = conn.cursor()
+
+# select
+cur.execute('SELECT Name, Grade, Age, Gender, Height, Weight, FavoriteThing FROM students')
+
+# fetch data
+results = cur.fetchall()
+
+# print database rows
+for row in results:
+    print(f'{row[0]:20} {row[1]:5} {row[2]:10} {row[3]:10} {row[4]:10} {row[5]:10} {row[6]:10}')
