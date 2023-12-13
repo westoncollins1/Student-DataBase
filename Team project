@@ -32,10 +32,6 @@ data_list = [
 # insert data into table
 cur.executemany("insert into students values (?,?,?,?,?,?,?)", data_list)
 
-# print database rows
-for row in cur.execute("select * from students"):
-    print(row)
-    
 # save and close connection
 conn.commit()
 conn.close()
@@ -46,9 +42,6 @@ conn.close()
 
 # mainline 
 # Jacob, Lincoln, Weston 12/13/23
-
-# import module
-import sqlite3
 
 # establish connection
 conn = sqlite3.connect('student.db')
