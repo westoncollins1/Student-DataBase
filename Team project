@@ -36,10 +36,6 @@ cur.executemany("insert into students values (?,?,?,?,?,?,?)", data_list)
 conn.commit()
 conn.close()
 
-
-
-
-
 # mainline 
 # Jacob, Lincoln, Weston 12/13/23
 
@@ -50,7 +46,7 @@ conn = sqlite3.connect('student.db')
 cur = conn.cursor()
 
 # select
-cur.execute('SELECT * FROM students')
+cur.execute('select * from students')
 
 # fetch data
 results = cur.fetchall()
