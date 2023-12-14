@@ -36,6 +36,7 @@ cur.executemany("insert into students values (?,?,?,?,?,?,?)", data_list)
 conn.commit()
 conn.close()
 
+
 # mainline 
 # Jacob, Lincoln, Weston 12/13/23
 
@@ -54,3 +55,6 @@ results = cur.fetchall()
 # print database rows
 for row in results:
     print(f'{row[0]:20} {row[1]:5} {row[2]:10} {row[3]:10} {row[4]:10} {row[5]:10} {row[6]:10}')
+
+#close
+conn.close()
