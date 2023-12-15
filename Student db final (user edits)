@@ -1,2 +1,28 @@
-# 12/23 Jacob, Lincoln, Weston
-# how to let user edit any records?
+# Jacob, Lincoln, Weston 12/23
+
+# import module
+import sqlite3
+
+# establish connection
+conn = sqlite3.connect('student.db')
+
+# get cursor
+cur = conn.cursor()
+
+while True:
+    # question for changing data
+    question = input('Would you like to change more data from students.db?(yes/no): ')
+
+    # loop for changing data
+    while question == 'yes':
+        # get user input
+        question1 = input('What what student would you like to update there records?: ')
+        question2 = input('What records?: ')
+        # show records
+        cur.execute(f"SELECT {question2}  WHERE Name == '{question1}'")
+        student = cur.fetchall
+        for row in student:
+            print(f'{row[0]:20} {row[1]:5} {row[2]:10} {row[3]:10} {row[4]:10} {row[5]:10} {row[6]:10}')
+        # update
+        # cur.execute('UPDATE table SET column = "data" WHERE column = "data"')
+
