@@ -11,29 +11,38 @@ cur = conn.cursor()
 
 # Show the
 
-while True:
-    # question for changing data
-    question = input('Would you like to change more data from the students tabel?(yes/no): ')
+# question for changing data
+question = input('Would you like to change data from the students tabel?(yes/no) ')
+
+while question == 'yes':
 
     # loop for changing data
     if question == 'yes':
+        
         # get user input
-        question1 = input('What student would you like to update there records?(name): ')
-        question2 = input('What records?(column): ')
-        # show records
+        question1 = input('Whose records would you like to update?(name) ')
+        
+        question2 = input('What records?(column) ')
+        
+        # select and retrieve records
         cur.execute(f"SELECT {question2} FROM students WHERE Name == '{question1}'")
         student = cur.fetchall()
+        
         # print
         for row in student:
             print(f'This is the current {question2}: {row[0]}')
 
         # update to what?
-        question3 = input('Would you like to change this?(yes/no)')
+        question3 = input('Would you like to change this?(yes/no) ')
+        
         if question3 == 'yes':
+            
             # whats the update?
-            question4 = input(f'What would you like to change their {question2} to?: ')
+            question4 = input(f'What would you like to change their {question2} to? ')
+            
             # update
             # form: cur.execute('UPDATE table SET column = "new_data" WHERE column = "old_data"')
-            cur.execute(f'UPDATE students SET {question2} = "{question4}" WHERE {question2} = "{student}"')
+            cur.execute(f'UPDATE students SET {question2} = "{question4}" WHERE {question2} == "{student}"')
 
-
+    # question for changing data
+    question = input('Would you like to change more data from the students tabel?(yes/no) ')
