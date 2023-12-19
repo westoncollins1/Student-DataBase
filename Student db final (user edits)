@@ -12,7 +12,7 @@ cur = conn.cursor()
 # Show the
 
 # question for changing data
-question = input('Would you like to change data from the students tabel?(yes/no) ')
+question = input('Would you like to change data from the students table?(yes/no) ')
 
 while question == 'yes':
         
@@ -27,7 +27,7 @@ while question == 'yes':
         
     # print
     for row in student:
-        print(f'This is the current {question2}: {row[0]}')
+        print(f'This is their current {question2}: {row[0]}')
 
     # update to what?
     question3 = input('Would you like to change this?(yes/no) ')
@@ -42,4 +42,4 @@ while question == 'yes':
         cur.execute(f'UPDATE students SET {question2} = "{question4}" WHERE {question2} == "{student}"')   
 
     # question for changing data
-    question = input('Would you like to change more data from the students tabel?(yes/no) ')
+    question = input('Would you like to change more data from the students table?(yes/no) ')
