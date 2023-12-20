@@ -9,37 +9,57 @@ conn = sqlite3.connect('student.db')
 # get cursor
 cur = conn.cursor()
 
-# Show the
+# show data -------------------------------------------------------
+print('\nIn student.db there are 7 attributes: Name, Grade, Age, Gender, Height, Weight, FavoriteThing')
+print('The current data in the database is:')
+# select
+cur.execute('select * from students')
 
-# question for changing data
-question = input('Would you like to change data from the students table?(yes/no) ')
+# fetch data
+results = cur.fetchall()
 
-while question == 'yes':
-        
-    # get user input
-    question1 = input('Whose records would you like to update?(name) ')
-        
-    question2 = input('What records?(column) ')
-        
-    # select and retrieve records
-    cur.execute(f"SELECT {question2} FROM students WHERE Name == '{question1}'")
-    student = cur.fetchall()
-        
-    # print
-    for row in student:
-        print(f'This is their current {question2}: {row[0]}')
-
-    # update to what?
-    question3 = input('Would you like to change this?(yes/no) ')
-        
-    if question3 == 'yes':
-            
-        # whats the update?
-        question4 = input(f'What would you like to change their {question2} to? ')
-            
-        # update
-        # form: cur.execute('UPDATE table SET column = "new_data" WHERE column = "old_data"')
-        cur.execute(f'UPDATE students SET {question2} = "{question4}" WHERE {question2} == "{student}"')   
-
+# print database rows
+for row in results:
+    print(f'{row[0]:20} {row[1]:5} {row[2]:10} {row[3]:10} {row[4]:10} {row[5]:10} {row[6]:10}')
+# ------------------------------------------------------------------
+# create loop to update numerous data
+while True:
     # question for changing data
-    question = input('Would you like to change more data from the students table?(yes/no) ')
+    question = input('\nWould you like to change data from the students table?(yes/no): ')
+
+    while question == 'yes':
+
+        # get user input
+        question1 = input('Whose records would you like to update?(name): ')
+        question2 = input('What records?(column): ')
+
+        # select and retrieve records
+        cur.execute(f"SELECT {question2} FROM students WHERE Name == '{question1}'")
+        student = cur.fetchall()
+
+        # this is the placeholder for the update statement
+        attribute = student[0][0]
+
+        # print
+        for row in student:
+            print(f'This is their current {question2}: {row[0]}')
+
+        # update to what?
+        question3 = input('Would you like to change this?(yes/no): ')
+
+        if question3 == 'yes':
+            # whats the update?
+            question4 = input(f'What would you like to change their {question2} to?: ')
+
+            # update
+            cur.execute(f'UPDATE students SET {question2} = "{question4}" WHERE {question2} == "{attribute}"')
+        break
+# -----------------------------------------------------------------------
+    # end loop
+    if question == 'no':
+        print('You have finished updating')
+        break
+
+# save and close
+conn.commit()
+conn.close()
